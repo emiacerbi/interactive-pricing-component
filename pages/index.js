@@ -14,15 +14,17 @@ import {
   Text, 
   propNames,
   Button} from '@chakra-ui/react'
+  
+import Head from 'next/head'
 
 
 export default function Home() {
   return (
 
     <>
-      <head>
+      <Head>
         <title>Interactive pricing component</title>
-      </head>
+      </Head>
 
       <Container display='flex' flexDir='column' height='100vh' maxWidth='100%' alignItems='center' justifyContent='center'  gap={14} fontFamily="'Manrope', sans-serif" padding={6} paddingY={20} margin={0}
       backgroundImage='url(/images/bg-pattern.svg)'
@@ -127,15 +129,15 @@ export default function Home() {
           
           <Box color='neutral.400' display='flex' flexDir='column' gap={3} justifyContent='center' alignItems='center'>
             <Text display='flex' alignItems='center' gap={2}>
-              <Image src='/images/icon-check.svg' display='inline'/>
+              <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
               Unlimited websites
             </Text>
             <Text display='flex' alignItems='center' gap={2}>
-              <Image src='/images/icon-check.svg' display='inline'/>
+              <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
               100% data ownership
             </Text>
             <Text display='flex' alignItems='center' gap={2}>
-              <Image src='/images/icon-check.svg' display='inline'/>
+              <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
               Email reports
             </Text>
 
