@@ -15,19 +15,11 @@ import {
   propNames,
   Button} from '@chakra-ui/react'
 
-import Head from 'next/head'
 
 export default function Home() {
   return (
 
     <>
-      <Head>
-        <title>Frontend Mentor</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap" rel="stylesheet" />
-      </Head>
-
       <Container display='flex' flexDir='column' height='100vh' maxWidth='100%' alignItems='center' justifyContent='center'  gap={14} fontFamily="'Manrope', sans-serif" padding={6} paddingY={20} margin={0}
       backgroundImage='url(/images/bg-pattern.svg)'
       backgroundRepeat='no-repeat'
