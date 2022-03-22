@@ -24,7 +24,7 @@ export default function Home() {
   // Value of slider
   const [sliderValue, setSliderValue] = useState(50)
   
-  const [pageViews, setPageViews] = useState("50")
+  const [pageViews, setPageViews] = useState("")
   const [amountValue, setAmountValue] = useState("50")
   const [isDiscountOn, setIsDiscountOn] = useState(0)
 
@@ -64,7 +64,7 @@ export default function Home() {
   useEffect(() => {
     
       checkSliderValue()
-      
+
   }, [sliderValue])
   
 
@@ -144,7 +144,7 @@ export default function Home() {
             gridColumn={['span 2', 'span 2', '1 / 2']}
             alignSelf='center'
             >
-              {/* {pageViews} pageviews */}
+              {pageViews} pageviews
           </Heading>
 
           <Slider 
