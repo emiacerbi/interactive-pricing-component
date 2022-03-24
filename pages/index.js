@@ -1,37 +1,38 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import { 
   Box, 
+  Button, 
   Container, 
-  Divider, 
-  Image,
+  Divider,
   Heading, 
-  Stack, 
-  Switch, 
-  Slider,
-  SliderTrack,
+  Image, 
+  Slider, 
   SliderFilledTrack,
+  SliderMark,
   SliderThumb,
-  Text, 
-  Button,
-  SliderMark} from '@chakra-ui/react'
+  SliderTrack,
+  Stack, 
+  Switch,
+  Text} from '@chakra-ui/react'
   
 import Head from 'next/head'
-
 
 export default function Home() {
 
   // Value of slider
-  const [sliderValue, setSliderValue] = useState(50)
+  const [sliderValue, setSliderValue] = useState(16)
   
-  const [pageViews, setPageViews] = useState("")
-  const [amountValue, setAmountValue] = useState("50")
+  const [pageViews, setPageViews] = useState("100K")
+  const [amountValue, setAmountValue] = useState(16)
   const [isDiscountOn, setIsDiscountOn] = useState(0)
 
 
-  const checkSliderValue = () => {
+  const checkSliderValue = (val) => {
 
     // The app will render different values depending on the value of the slider. 
+
+    setSliderValue(val)
 
     if(sliderValue <= 100 && sliderValue >= 81) {
       setPageViews("1M")
@@ -55,20 +56,6 @@ export default function Home() {
     }
   }
 
-  // Only re renders the app when sliderValue changes.
-  // useEffect(() => {
-
-    
-  // }, [sliderValue])
-  
-  useEffect(() => {
-    
-      checkSliderValue()
-
-  }, [sliderValue])
-  
-
-  
   return (
 
     <>
@@ -77,40 +64,40 @@ export default function Home() {
       </Head>
 
       <Container 
-        display='flex' 
-        flexDir='column' 
-        height='100vh' 
-        maxWidth='100%' 
         alignItems='center' 
-        justifyContent='center'  
-        gap={10} fontFamily="'Manrope', sans-serif" 
-        padding={6} 
-        paddingY={20} margin={0}
-        backgroundImage='url(/images/bg-pattern.svg)'
-        backgroundRepeat='no-repeat'
-        backgroundSize={['auto','auto', 'auto', 'cover']}
-        backgroundPosition={['0px 0px', '0px 0px', '0px 0px', '-75px -400px']}
+        backgroundImage='url(/images/bg-pattern.svg)' 
+        backgroundPosition={['0px 0px', '0px 0px', '0px 0px', '-75px -400px']} 
+        backgroundRepeat='no-repeat' 
+        backgroundSize={['auto','auto', 'auto', 'cover']} 
+        display='flex'  
+        flexDir='column' fontFamily="'Manrope', sans-serif" 
+        gap={10} 
+        height='100vh' justifyContent='center'
+        margin={0}
+        maxWidth='100%'
+        padding={6}
+        paddingY={20}
       >
 
         <Stack 
-          paddingY={7} 
+          alignItems='center' 
           backgroundImage="url('/images/pattern-circles.svg')" 
           backgroundPosition='center'
-          backgroundSize='contain'
           backgroundRepeat='no-repeat'
+          backgroundSize='contain'
           display='flex'
           flexDirection={['row']}
           flexWrap='wrap'
-          alignItems='center'
-          justifyContent='center'
-          textAlign='center'
           gap={1}
+          justifyContent='center'
+          paddingY={7}
+          textAlign='center'
         >
             
           <Heading color='neutral.500' 
+            fontFamily={"'Manrope', sans-serif"} 
             fontSize={['xl', '2xl', '3xl']} 
             fontWeight={700} 
-            fontFamily={"'Manrope', sans-serif"} 
             width='100%'
           >
             Simple, traffic-based pricing
@@ -121,28 +108,28 @@ export default function Home() {
         </Stack>
 
         <Stack 
-          width='100%' 
-          maxWidth='540px' 
           background='#fff' 
-          paddingY={10} 
           borderRadius={10} 
-          display='grid' 
-          gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
-          gap={[6, 6, 7]} 
           boxShadow='2xl' 
+          display='grid' 
+          gap={[6, 6, 7]} 
+          gridTemplateColumns={['1fr', '1fr', '1fr 1fr']} 
+          maxWidth='540px'
+          paddingY={10} 
+          width='100%' 
         >
 
           <Heading 
-            textTransform='uppercase' 
+            alignSelf='center' 
             color='neutral.400' 
             fontFamily={"'Manrope', sans-serif"}
             fontSize='sm' 
-            letterSpacing={2} 
             fontWeight={700} 
-            textAlign='center'
+            gridColumn={['span 2', 'span 2', '1 / 2']} 
+            letterSpacing={2}
             order='-1'
-            gridColumn={['span 2', 'span 2', '1 / 2']}
-            alignSelf='center'
+            textAlign='center'
+            textTransform='uppercase'
             >
               {pageViews} pageviews
           </Heading>
@@ -150,12 +137,12 @@ export default function Home() {
           <Slider 
             aria-label='slider-ex-1' 
             defaultValue={50} 
-            width='80%' 
+            gridColumn='span 2' 
+            justifySelf='center' 
             maxW='445px' 
             order='0' 
-            gridColumn='span 2' 
-            justifySelf='center'
-            onChange={(val) => setSliderValue(val)}
+            width='80%'
+            onChange={(val) => checkSliderValue(val)}
           >
 
             <SliderTrack borderRadius={10} boxSize={2.5}>
@@ -163,128 +150,127 @@ export default function Home() {
             </SliderTrack>
             
             <SliderThumb 
-              boxSize={10}
-              bg='primary.200'
-              backgroundImage="url('/images/icon-slider.svg')"
-              backgroundRepeat='no-repeat'
-              backgroundPosition='center'
-              backgroundSize='60%'
-              boxShadow='rgba(93, 234, 220, .3) 0px 10px 20px 25px, rgba(93, 234, 220, .3) 0px 25px 12px;'
-              overflow='hidden'
- 
               _focus={
                 {
                   boxShadow: 'rgba(93, 234, 220, .3) 0px 10px 20px 25px, rgba(93, 234, 220, .3) 0px 25px 12px;',
                   boxSize: '10',
                 }
               }
-
               _hover={
                 {
-                  bg: '#78ebdc',
                   backgroundImage: "url('/images/icon-slider.svg')",
-                  backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                   backgroundSize: '60%',
+                  bg: '#78ebdc',
                 }
               }
-
               _selected={
                 {
-                  boxShadow: 'rgba(93, 234, 220, .3) 0px 10px 20px 25px, rgba(93, 234, 220, .3) 0px 25px 12px;',
                   bg: 'red',
+                  boxShadow: 'rgba(93, 234, 220, .3) 0px 10px 20px 25px, rgba(93, 234, 220, .3) 0px 25px 12px;',
                 }
               }
+              backgroundImage="url('/images/icon-slider.svg')"
+              backgroundPosition='center'
+              backgroundRepeat='no-repeat'
+              backgroundSize='60%'
+              bg='primary.200'
+ 
+              boxShadow='rgba(93, 234, 220, .3) 0px 10px 20px 25px, rgba(93, 234, 220, .3) 0px 25px 12px;'
+
+              boxSize={10}
+
+              overflow='hidden'
 
             />
           </Slider>
             
           <Text 
-            display='flex' 
             alignItems='center' 
-            gap={2} 
+            color='neutral.500' 
+            display='flex' 
             fontSize='4xl' 
             fontWeight={700} 
-            color='neutral.500' 
+            gap={2} 
+            gridColumn={['span 2', 'span 2', '2 / 3']} 
             justifyContent='center' 
-            order={['0', '0', '-1']} 
-            gridColumn={['span 2', 'span 2', '2 / 3']}
+            order={['0', '0', '-1']}
           >
 
 
             ${!isDiscountOn ? amountValue.toString().concat('.00') : (amountValue -= (amountValue * 0.25)).toString().concat('.00')} 
             
-            <Text color='neutral.400' fontWeight={500} fontSize='md' as='span'>/ month</Text>
+            <Text as='span' color='neutral.400' fontSize='md' fontWeight={500}>/ month</Text>
 
           </Text>
 
           <Box 
-            display='flex' 
-            direction='row' 
-            justifyContent='center' 
-            gap={[2, 4, 5, 6]} c
-            olor='neutral.400' 
-            fontWeight={500} 
             alignItems='center' 
+            color='neutral.400' 
+            direction='row' 
+            display='flex'
             fontSize={['xs']} 
-            width='90%' 
+            fontWeight={500} 
+            gap={[2, 4, 5, 6]} 
             gridColumn='span 2' 
+            justifyContent='center' 
             justifySelf='end' 
             marginY={12} 
+            width='90%' 
           > 
           
             <Text>Monthly Billing</Text>
             <Switch 
-              size='lg' 
-              colorScheme='teal'
+              colorScheme='teal' 
               opacity='.7'
+              size='lg'
               value={isDiscountOn}
               onChange={() => setIsDiscountOn(isDiscountOn === 1 ? 0 : 1)}
             />
-            <Text display='flex' alignItems='center' gap={2}>
+            <Text alignItems='center' display='flex' gap={2}>
               Yearly Billing
-              <Text as='span' color='primary.400' background='primary.300' borderRadius='xl' padding={1} fontWeight={700} display={['block', 'block', 'none']}>-25%</Text>
-              <Text as='span' color='primary.400' background='primary.300' borderRadius='xl' padding={1} fontWeight={700} display={['none', 'none', 'block']}>-25% discount</Text>
+              <Text as='span' background='primary.300' borderRadius='xl' color='primary.400' display={['block', 'block', 'none']} fontWeight={700} padding={1}>-25%</Text>
+              <Text as='span' background='primary.300' borderRadius='xl' color='primary.400' display={['none', 'none', 'block']} fontWeight={700} padding={1}>-25% discount</Text>
             </Text>
             
           </Box>
 
           <Divider borderColor='lightgray' gridColumn='span 2'/>
           
-          <Box color='neutral.400' display={['flex', 'flex', 'grid']} gridTemplateColumns={'1fr 1fr'} textAlign='center' flexDir='column' gap={3} justifyContent='center' alignItems='center' fontSize='sm' gridColumn='span 2' paddingX={12}>
+          <Box alignItems='center' color='neutral.400' display={['flex', 'flex', 'grid']} flexDir='column' fontSize='sm' gap={3} gridColumn='span 2' gridTemplateColumns={'1fr 1fr'} justifyContent='center' paddingX={12} textAlign='center'>
 
             <Stack>
-              <Text display='flex' alignItems='center' gap={2}>
-                <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
+              <Text alignItems='center' display='flex' gap={2}>
+                <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 Unlimited websites
               </Text>
-              <Text display='flex' alignItems='center' gap={2}>
-                <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
+              <Text alignItems='center' display='flex' gap={2}>
+                <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 100% data ownership
               </Text>
-              <Text display='flex' alignItems='center' gap={2}>
-                <Image src='/images/icon-check.svg' alt='check icon' display='inline'/>
+              <Text alignItems='center' display='flex' gap={2}>
+                <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 Email reports
               </Text>
             </Stack>
 
             <Button
-              borderRadius='2rem'
-              backgroundColor='neutral.500'
-              color='neutral.300'
-              fontSize='xs'
-              paddingX={10}
-              paddingY={5}
-              marginTop={5}
-              maxW='170px'
-              marginLeft={['0', '0', 'auto']}
-              
               _hover= {
                 {
                   opacity: .8
                 }
               }
-
+              backgroundColor='neutral.500'
+              borderRadius='2rem'
+              color='neutral.300'
+              fontSize='xs'
+              marginLeft={['0', '0', 'auto']}
+              marginTop={5}
+              maxW='170px'
+              paddingX={10}
+              
+              paddingY={5}
             >Start my trial</Button>
           </Box>
         </Stack>
