@@ -112,23 +112,24 @@ export default function Home() {
           borderRadius={10} 
           boxShadow='2xl' 
           display='grid' 
-          gap={[6, 6, 7]} 
+          gap={[6, 6, 7]}
           gridTemplateColumns={['1fr', '1fr', '1fr 1fr']} 
           maxWidth='540px'
           paddingY={10} 
-          width='100%' 
+          // spacing={0} 
+          width='100%'
         >
 
           <Heading 
             alignSelf='center' 
-            color='neutral.400' 
-            fontFamily={"'Manrope', sans-serif"}
-            fontSize='sm' 
+            color='neutral.400'
+            fontFamily={"'Manrope', sans-serif"} 
+            fontSize={['sm', 'sm', 'md']} 
             fontWeight={700} 
-            gridColumn={['span 2', 'span 2', '1 / 2']} 
+            gridColumn={['span 2', 'span 2', '1 / 2']}
             letterSpacing={2}
             order='-1'
-            textAlign='center'
+            textAlign='center' 
             textTransform='uppercase'
             >
               {pageViews} pageviews
@@ -139,7 +140,7 @@ export default function Home() {
             defaultValue={50} 
             gridColumn='span 2' 
             justifySelf='center' 
-            maxW='445px' 
+            maxW='440px' 
             order='0' 
             width='80%'
             onChange={(val) => checkSliderValue(val)}
@@ -190,18 +191,20 @@ export default function Home() {
             alignItems='center' 
             color='neutral.500' 
             display='flex' 
-            fontSize='4xl' 
-            fontWeight={700} 
+            fontSize={['4xl', '4xl', '2.5rem']} 
+            fontWeight={700}
             gap={2} 
             gridColumn={['span 2', 'span 2', '2 / 3']} 
-            justifyContent='center' 
+            justifyContent='center'
+            marginRight={['0', '0', '2.5rem !important']}
+            marginTop='0 !important'
             order={['0', '0', '-1']}
           >
 
 
             ${!isDiscountOn ? amountValue.toString().concat('.00') : (amountValue -= (amountValue * 0.25)).toString().concat('.00')} 
             
-            <Text as='span' color='neutral.400' fontSize='md' fontWeight={500}>/ month</Text>
+            <Text as='span' color='neutral.400' fontSize={['md']} fontWeight={500}>/ month</Text>
 
           </Text>
 
@@ -238,18 +241,28 @@ export default function Home() {
 
           <Divider borderColor='lightgray' gridColumn='span 2'/>
           
-          <Box alignItems='center' color='neutral.400' display={['flex', 'flex', 'grid']} flexDir='column' fontSize='sm' gap={3} gridColumn='span 2' gridTemplateColumns={'1fr 1fr'} justifyContent='center' paddingX={12} textAlign='center'>
+          <Box 
+            color='neutral.400'
+            display={['flex', 'flex', 'grid']} 
+            flexDir='column' 
+            fontSize='sm' 
+            gap={3} 
+            gridColumn='span 2' 
+            gridTemplateColumns={'1fr 1fr'} 
+            paddingX={12}
+            >
 
             <Stack>
-              <Text alignItems='center' display='flex' gap={2}>
+            
+              <Text alignItems='center' display='flex' gap={2} justifyContent={['center', 'center', 'left']}>
                 <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 Unlimited websites
               </Text>
-              <Text alignItems='center' display='flex' gap={2}>
+              <Text alignItems='center' display='flex' gap={2} justifyContent={['center', 'center', 'left']}>
                 <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 100% data ownership
               </Text>
-              <Text alignItems='center' display='flex' gap={2}>
+              <Text alignItems='center' display='flex' gap={2} justifyContent={['center', 'center', 'left']}>
                 <Image alt='check icon' display='inline' src='/images/icon-check.svg'/>
                 Email reports
               </Text>
@@ -261,6 +274,7 @@ export default function Home() {
                   opacity: .8
                 }
               }
+              alignSelf='center'
               backgroundColor='neutral.500'
               borderRadius='2rem'
               color='neutral.300'
@@ -269,8 +283,8 @@ export default function Home() {
               marginTop={5}
               maxW='170px'
               paddingX={10}
-              
               paddingY={5}
+
             >Start my trial</Button>
           </Box>
         </Stack>
